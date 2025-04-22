@@ -13,5 +13,5 @@ function [B] = backscatter(b, E, beta, z, e)
 %   z: Range along LOS
 %   e: Constant e
 
-B = (b*E/beta) * (1 - e^(-beta*z));
+B = (b.*E./beta) .* (1 - e.^(-beta.*z));
 end
