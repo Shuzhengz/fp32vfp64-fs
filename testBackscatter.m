@@ -1,12 +1,12 @@
 gpuDevice
 validateGPU("all")
 
-arraySize = 10000;
+arraySize = 1000000;
 
 maxa = 1;
 maxb = 1;
 maxE = 1000;
-maxz = 1000;
+maxz = 0.05;
 
 a = rand(1, arraySize) * maxa;
 b = rand(1, arraySize) * maxb;
@@ -38,3 +38,4 @@ percentDiff = diffM ./ doubleM;
 toc
 
 avgPercentDiff = mean(percentDiff)
+maxDiff = max(percentDiff)
