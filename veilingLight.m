@@ -11,5 +11,5 @@ function [B] = veilingLight(b, E, beta)
 %   E: Irradiance
 %   beta: Beam attenuation coefficient
 
-B = b*E/beta;
+B = b .*E ./beta;
 end
