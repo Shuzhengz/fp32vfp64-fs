@@ -6,12 +6,13 @@ arraySize = 1000000;
 maxa = 1;
 maxb = 1;
 maxE = 1000;
-maxz = 0.05;
+minz = 0.00001;
+maxz = 0.1;
 
 a = rand(1, arraySize) * maxa;
 b = rand(1, arraySize) * maxb;
 E = rand(1, arraySize) * maxE;
-z = rand(1, arraySize) * maxz;
+z = rand(1, arraySize) * (maxz - minz) + minz;
 %a = repmat(0.3, 1, 1);
 %b = repmat(0.2, 1, 1);
 %E = repmat(132, 1, 1);
