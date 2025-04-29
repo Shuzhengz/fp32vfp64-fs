@@ -6,7 +6,7 @@ arraySize = 1000000;
 maxa = 1;
 maxb = 1;
 maxE = 2;
-minz = 0.00001;
+minz = 0.000001;
 maxz = 0.1;
 
 a = rand(1, arraySize) * maxa;
@@ -40,5 +40,25 @@ toc
 
 avgPercentDiff = mean(percentDiff)
 maxDiff = max(percentDiff)
+minDiff = min(percentDiff)
+Q = quantile(percentDiff, 3)
+stdDev = std(percentDiff)
+
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.0001) = [];
+numel(filterDiff)
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.001) = [];
+numel(filterDiff)
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.01) = [];
+numel(filterDiff)
+
+outliers = isoutlier(percentDiff, "median");
+filterDiff = percentDiff;
+filterDiff(filterDiff < median(percentDiff)) = 0;
+filterDiff(filterDiff >= median(percentDiff)) = 1;
+outliers = outliers .* filterDiff;
+sum(outliers)
 
 clear

@@ -1,13 +1,13 @@
 gpuDevice
 validateGPU("all")
 
-arraySize = 10000;
+arraySize = 10000000;
 
 maxa = 1;
 maxb = 1;
-maxz = 1000;
-maxL0 = 0.00000083;
-maxLstar = 0.00000083;
+maxz = 1;
+maxL0 = 0.0001;
+maxLstar = 0.0001;
 maxKd = 0.5;
 maxTheta = 180;
 
@@ -49,3 +49,26 @@ percentDiff = diffM ./ doubleM;
 toc
 
 avgPercentDiff = mean(percentDiff)
+maxDiff = max(percentDiff)
+minDiff = min(percentDiff)
+Q = quantile(percentDiff, 3)
+stdDev = std(percentDiff)
+
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.0001) = [];
+numel(filterDiff)
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.001) = [];
+numel(filterDiff)
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.01) = [];
+numel(filterDiff)
+
+outliers = isoutlier(percentDiff, "median");
+filterDiff = percentDiff;
+filterDiff(filterDiff < median(percentDiff)) = 0;
+filterDiff(filterDiff >= median(percentDiff)) = 1;
+outliers = outliers .* filterDiff;
+sum(outliers)
+
+clear

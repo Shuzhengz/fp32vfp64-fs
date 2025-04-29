@@ -31,5 +31,25 @@ toc
 
 avgPercentDiff = mean(percentDiff)
 maxDiff = max(percentDiff)
+minDiff = min(percentDiff)
+Q = quantile(percentDiff, 3)
+stdDev = std(percentDiff)
+
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.0001) = [];
+numel(filterDiff)
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.001) = [];
+numel(filterDiff)
+filterDiff = percentDiff;
+filterDiff(filterDiff < 0.01) = [];
+numel(filterDiff)
+
+outliers = isoutlier(percentDiff, "median");
+filterDiff = percentDiff;
+filterDiff(filterDiff < median(percentDiff)) = 0;
+filterDiff(filterDiff >= median(percentDiff)) = 1;
+outliers = outliers .* filterDiff;
+sum(outliers)
 
 clear
