@@ -5,7 +5,7 @@ arraySize = 1000000;
 
 maxa = 1;
 maxb = 1;
-maxE = 1000;
+maxE = 2;
 
 a = rand(1, arraySize) * maxa;
 b = rand(1, arraySize) * maxb;
