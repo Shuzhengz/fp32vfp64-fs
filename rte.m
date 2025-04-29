@@ -17,6 +17,6 @@ function [L] = rte(L0, Lstar, beta, Kd, z, theta, e)
 %   theta: Angle measured from nadir direction
 %   e: Constant e
 
-L = L0 * e^(-beta*z) + (Lstar*e^(-Kd*z*cos(theta))/(beta-Kd*cos(theta)))...
-    * (1 - e^(-(beta-Kd*cos(theta)*z)));
+L = L0 .* e.^(-beta.*z) + (Lstar.*e.^(-Kd.*z.*cos(theta))./(beta-Kd.*cos(theta)))...
+    .* (1 - e.^(-(beta-Kd.*cos(theta).*z)));
 end
