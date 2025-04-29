@@ -23,8 +23,8 @@ gpuES = gpuArray(single(E));
 gpueS = gpuArray(single(e));
 
 tic
-doubleM = veilingLight(gpubD, gpuED, gpuaD + gpubD);
-singleM = veilingLight(gpubS, gpuES, gpuaS + gpubS);
+doubleM = gather(veilingLight(gpubD, gpuED, gpuaD + gpubD));
+singleM = gather(veilingLight(gpubS, gpuES, gpuaS + gpubS));
 diffM = abs(doubleM - double(singleM));
 percentDiff = diffM ./ doubleM;
 toc

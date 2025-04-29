@@ -32,8 +32,8 @@ gpuzS = gpuArray(single(z));
 gpueS = gpuArray(single(e));
 
 tic
-doubleM = backscatter(gpubD, gpuED, gpuaD + gpubD, gpuzD, gpueD);
-singleM = backscatter(gpubS, gpuES, gpuaS + gpubS, gpuzS, gpueS);
+doubleM = gather(backscatter(gpubD, gpuED, gpuaD + gpubD, gpuzD, gpueD));
+singleM = gather(backscatter(gpubS, gpuES, gpuaS + gpubS, gpuzS, gpueS));
 diffM = abs(doubleM - double(singleM));
 percentDiff = diffM ./ doubleM;
 toc
